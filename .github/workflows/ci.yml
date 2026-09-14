@@ -1,0 +1,24 @@
+name: Mi Primer Robot DevOPs
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  revisar-codigo:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Descargar codigo
+      uses: actions/checkout@v4
+
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    
+    - name: Validar sintaxis de python
+      run: |
+        python -m py_compile app.py
+        echo "El codigo de Flask es valido y o tiene errores de sintaxis"
